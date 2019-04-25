@@ -1,4 +1,4 @@
-package winterScene;
+package snowman;
 
 import java.awt.Color;
 import java.awt.Graphics;
