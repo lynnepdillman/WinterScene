@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 
-public class StormySnowFlake extends AbstractShape {
+public class StormySnowFlake extends AbstractShape{
     
-    public StormySnowFlake (int x, int y, int w, int h) {
+    private int speed;
+    
+    public StormySnowFlake(int x, int y, int w, int h) {
         super(x, y, w, h, Color.WHITE, 0, 2);
+        speed = 20;
     }
     
     public void draw(Graphics window) {
@@ -16,6 +19,12 @@ public class StormySnowFlake extends AbstractShape {
         int y = getYPos();
         int w = getWidth();
         int h = getHeight();
+        //simple
+        window.drawLine(x, y, x + w, y + h);
+        window.drawLine(x, y + h, x + w, y);
+        window.drawLine(x, y + h / 2, x + w, y + h / 2);
+        window.drawLine(x + w / 2, y, x + w / 2, y + h);
+        //fancy 
         int hw = w / 2;
         int hh = h / 2;
         int hhe = (int) Math.ceil(hh * .125);
@@ -31,7 +40,8 @@ public class StormySnowFlake extends AbstractShape {
         Polygon triangle = new Polygon(xPoints, yPoints, nPoints);
         window.drawPolygon(triangle);
     }
-        public void moveAndDraw(Graphics window) {
+    
+    public void moveAndDraw(Graphics window) {
         //draw(window,Color.BLUE);
         int offset = (int) (Math.random() * 4);
         int rnd = (int) (Math.random() * 2);
@@ -41,5 +51,6 @@ public class StormySnowFlake extends AbstractShape {
         setXPos(getXPos() + offset);
         setYPos(getYPos() + getYSpeed());
         draw(window);
+        
     }
 }
